@@ -3,4 +3,6 @@
     <string name="txt_name">Tarefa 1</string>
     <string name="txt_description">Descricao</string>
     <string name="txt_data">Data</string>
+    <string name="txt_toolbar">Task List</string>
+    <string name="txt_name_asign">Insira o nome da Tarefa</string>
 </resources>
