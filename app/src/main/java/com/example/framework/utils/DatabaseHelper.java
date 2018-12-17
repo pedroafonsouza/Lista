@@ -26,13 +26,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sd, ConnectionSource cs) {
 
-        String sql = "CREATE TABLE " + databaseName +
-                "( id INTEGER PRIMARY KEY," +
-                " name TEXT UNIQUE NOT NULL," +
-                " description TEXT," +
-                " date TEXT" +
-                ");";
-        sd.execSQL(sql);
+        try {
+            TableUtils.createTable(cs, Task.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
