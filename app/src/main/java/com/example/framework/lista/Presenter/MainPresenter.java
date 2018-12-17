@@ -40,6 +40,7 @@ public class MainPresenter {
 
             //sucess
             List<Task> tasks = taskBusiness.getList();
+            if(tasks == null) throw new Exception();
             contract.listLoaded(tasks);
         }catch (Exception e) {
             //error

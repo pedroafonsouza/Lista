@@ -27,8 +27,7 @@ import com.example.framework.utils.DatabaseHelper;
 public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract{
 
 
-    private DatabaseHelper dh;
-    private TaskDAO taskDAO;
+
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -102,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void listError(String error) {
 
-        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG);
+        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
+
 
     }
 }

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class TaskDAO extends BaseDaoImpl<Task, Integer> {
 
 
-    protected TaskDAO(ConnectionSource cs) throws SQLException {
+    public TaskDAO(ConnectionSource cs) throws SQLException {
         super(Task.class);
         setConnectionSource(cs);
         initialize();
