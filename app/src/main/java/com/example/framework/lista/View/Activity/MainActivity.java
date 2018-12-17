@@ -11,18 +11,29 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.example.framework.lista.Model.DAO.TaskDAO;
 import com.example.framework.lista.Model.DTO.Task;
+import com.example.framework.lista.Presenter.MainPresenter;
 import com.example.framework.lista.R;
 import com.example.framework.lista.View.Adapter.MyAdapter;
+import com.example.framework.utils.DatabaseHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract{
+
+
+    private DatabaseHelper dh;
+    private TaskDAO taskDAO;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,45 +43,66 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
+
+    }
+
+
+    private void init() {
+
+        presenter = new MainPresenter();
+        presenter.setView(this);
+        presenter.getList();
+
+    }
+
+    private void initRecycle(List<Task> tasks) {
+
+        mRecyclerView = findViewById(R.id.my_recycler_view);
+        ImageView btnAddTask = findViewById(R.id.btn_add);
+
+
+        mRecyclerView.setHasFixedSize(true);
+
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        mAdapter = new MyAdapter(tasks, this);
+        mRecyclerView.setAdapter(mAdapter);
+        btnAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
+                intent.putExtra("name", "Add task name");
+                intent.putExtra("description", "Add a task description here...");
+                startActivity(intent);
+
+            }
+        });
+
+    }
+
+    private void initDAO() {
+
+      //  dh = new DatabaseHelper(MainActivity.this);
+
+
     }
 
 
-        private void init(){
+    @Override
+    public void listLoaded(List<Task> tasks) {
 
-            mRecyclerView = findViewById(R.id.my_recycler_view);
-            ImageView btnAddTask = findViewById(R.id.btn_add);
-
-            ArrayList<Task> tasks = new ArrayList<>();
-
-            tasks.add(new Task("Tarefa 1","Garantir a planificação periódica (trimestral e mensal) das actividades gerais do projecto A Nível provincial.", new Date()));
-            tasks.add(new Task("Tarefa 2","Apoiar a Gestão Provincial na orçamentação das actividades.", new Date()));
-            tasks.add(new Task("Tarefa 3","Elaborar relatórios mensais e trimestrais das actividades do projecto a nível provincial (Relatorio Quantitativo e Qualitativo).", new Date()));
-            tasks.add(new Task("Tarefa 4","Elaborar relatório trimestral do projecto (PUDR).", new Date()));
-            tasks.add(new Task("Tarefa 5","Garantir o cumprimento dos prazos de envio de relatórios mensais e trimestrais ao nível." +
-                    "central", new Date()));
-
-            mRecyclerView.setHasFixedSize(true);
-
-
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.setLayoutManager(mLayoutManager);
-
-
-            mAdapter = new MyAdapter(tasks, this);
-            mRecyclerView.setAdapter(mAdapter);
-            btnAddTask.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
-                    intent.putExtra("name", "Pedro Afonso");
-                    startActivity(intent);
-
-                }
-            });
-
-        }
-
-
+        initRecycle(tasks);
 
     }
+
+    @Override
+    public void listError(String error) {
+
+        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG);
+
+    }
+}

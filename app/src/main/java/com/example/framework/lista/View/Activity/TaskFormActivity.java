@@ -15,9 +15,11 @@ public class TaskFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_form);
 
 
-        TextView textView = findViewById(R.id.name_asign);
+        TextView textView = findViewById(R.id.title_toolbar);
         String name = getIntent().getStringExtra("name");
         textView.setText(name);
+
+
 
     }
 }

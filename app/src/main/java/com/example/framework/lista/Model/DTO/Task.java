@@ -1,15 +1,29 @@
 package com.example.framework.lista.Model.DTO;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 import java.util.Date;
 
+
+@DatabaseTable(tableName = "task")
 public class Task implements Serializable {
 
 
 
+    @DatabaseField(generatedId = true)
+    private String id;
+
+    @DatabaseField
     private String name;
+
+    @DatabaseField
     private String description;
+
+    @DatabaseField
     private Date date;
+
 
     public Task(String name, String description, Date date) {
         this.name = name;

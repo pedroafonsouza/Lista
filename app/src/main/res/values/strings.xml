@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Lista</string>
-    <string name="txt_name">Tarefa 1</string>
-    <string name="txt_description">Descricao</string>
-    <string name="txt_data">Data</string>
+    <string name="app_name">List</string>
+    <string name="txt_name">Task 1</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_data">Date</string>
     <string name="txt_toolbar">Task List</string>
-    <string name="txt_name_asign">Insira o nome da Tarefa</string>
+    <string name="txt_name_asign">Add the task name</string>
+    <string name="pick_time">dd::MM:yyyy::HH::mm</string>
+    <string name="txt_task_toolbar">Create a Task</string>
+    <string name="confirm_create_task">Confirm</string>
 </resources>
