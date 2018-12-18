@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:layout_marginBottom="4dp"
     android:background="#FEFEFE"
-    android:layout_marginBottom="4dp">
+    android:orientation="vertical"
+    android:padding="10dp"
+
+    >
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_mark">
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="4dp"
+            android:text="@string/txt_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-           <TextView
-           android:id="@+id/name"
-           android:layout_width="match_parent"
-           android:layout_height="42dp"
-           android:text="@string/txt_name"
-           android:gravity="center_vertical"
-           android:textSize="18sp"
-           android:textStyle="bold"
-               />
+        <ImageView
+            android:id="@+id/btn_edit"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_toLeftOf="@+id/btn_delete"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_edit" />
 
-           <ImageView
-              android:id="@+id/btn_edit"
-               android:layout_width="42dp"
-               android:layout_height="42dp"
-               android:src="@drawable/ic_edit"
-               android:scaleType="centerInside"
-               android:layout_toLeftOf="@+id/btn_delete"
-               android:clickable="true"
-               android:foreground="?attr/selectableItemBackgroundBorderless"
-               />
-           <ImageView
-              android:id="@+id/btn_delete"
-               android:layout_width="42dp"
-               android:layout_height="42dp"
-               android:src="@drawable/ic_delete"
-               android:scaleType="centerInside"
-               android:layout_alignParentRight="true"
-               android:clickable="true"
-               android:foreground="?attr/selectableItemBackgroundBorderless"
-               />
+        <ImageView
+            android:id="@+id/btn_delete"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_delete" />
 
-       </RelativeLayout>
-
-
-       <TextView
-           android:id="@+id/description"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+    </RelativeLayout>
 
 
-           android:text="@string/txt_description"
-           android:textSize="16sp"
-           android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:layout_margin="10dp"
+
+        android:text="@string/txt_description"
+        android:textSize="16sp"
+        android:textStyle="italic" />
 
 
-       <TextView
-           android:id="@+id/date"
-           android:layout_width="match_parent"
-           android:layout_height="42dp"
-
-           android:gravity="center_vertical"
-           android:text="@string/txt_data"
-           android:textSize="18sp" />
-
-
-
-
-
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="4dp"
+        android:text="@string/txt_data"
+        android:textSize="18sp" />
 
 
 </LinearLayout>

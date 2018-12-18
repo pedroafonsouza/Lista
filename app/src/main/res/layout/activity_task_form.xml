@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/task_form"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="4dp"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        >
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
 
             <TextView
@@ -40,83 +38,108 @@
                 android:textStyle="bold" />
 
 
-
-
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
 
-   <EditText
-       android:id="@+id/task_name"
-       android:layout_width="match_parent"
-       android:layout_height="42dp"
-       android:hint="Input task name"
-       android:layout_margin="16dp"
-       android:textStyle="italic"
-       />
 
+    <TextView
+        android:id="@+id/task_form_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:text="Fill the form fields"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:textStyle="italic"
+        android:textSize="18dp"/>
+
+    <EditText
+        android:id="@+id/task_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/custom_text_field"
+        android:hint="Input task name"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLength="40"
+        android:nextFocusDown="@+id/task_descript"
+        android:paddingLeft="5dp"
+        android:textStyle="italic"
+        android:textColor="#757575"
+        android:textColorHint="@color/white"/>
 
 
     <EditText
+        android:id="@+id/task_descript"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:inputType="textMultiLine"
+        android:layout_margin="10dp"
+        android:background="@drawable/custom_text_field"
+        android:gravity="top"
         android:hint="Description"
-        android:textStyle="italic"
-        android:layout_margin="16dp"
+        android:inputType="textMultiLine"
+        android:paddingLeft="5dp"
         android:textSize="16dp"
-        android:gravity="bottom"
-
-
-
+        android:textStyle="italic"
+        android:nextFocusDown="@id/date_bt"
+        android:textColor="#757575"
+        android:textColorHint="@color/white"
 
         />
 
     <RelativeLayout
+        android:id="@+id/date"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_margin="80dp"
+        android:layout_height="52dp"
+        android:layout_margin="20dp"
         android:scaleType="centerInside"
+        android:background="@drawable/custom_bt"
 
         >
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Date"
-            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+
 
             />
 
         <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/ic_arrow_down"
-            android:scaleType="centerInside"
+            android:id="@+id/date_bt"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_alignParentRight="true"
             android:clickable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_down"
 
+            />
 
 
     </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginHorizontal="144dp"
-        android:text="Confirm"
-        android:background="#fd9799"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
+        android:layout_height="52dp"
         android:layout_margin="20dp"
+        android:background="@drawable/custom_bt"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
-    />
-
+        android:gravity="center"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

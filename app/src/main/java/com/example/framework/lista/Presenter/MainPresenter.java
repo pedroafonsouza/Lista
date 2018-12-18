@@ -44,6 +44,7 @@ public class MainPresenter {
             contract.listLoaded(tasks);
         }catch (Exception e) {
             //error
+            e.printStackTrace();
             contract.listError("Fail on load list");
 
         }

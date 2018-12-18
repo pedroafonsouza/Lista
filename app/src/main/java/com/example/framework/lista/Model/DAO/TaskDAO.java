@@ -36,7 +36,6 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
             e.printStackTrace();
             return null;
         }
-
     }
 
     public int deleteTask(Task task){
@@ -44,7 +43,9 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
             return  delete(task);
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
+
     }
 
     public void newTask(Task task){
@@ -60,6 +61,8 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
             return update(task);
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
+
     }
 }

@@ -13,7 +13,7 @@ public class Task implements Serializable {
 
 
     @DatabaseField(generatedId = true)
-    private String id;
+    private int id;
 
     @DatabaseField
     private String name;

@@ -8,4 +8,8 @@
     <string name="pick_time">dd::MM:yyyy::HH::mm</string>
     <string name="txt_task_toolbar">Create a Task</string>
     <string name="confirm_create_task">Confirm</string>
+
+    <string name="title_activity_launcher">LauncherActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
