@@ -24,9 +24,7 @@ import com.example.framework.lista.R;
 import com.example.framework.lista.View.Adapter.MyAdapter;
 import com.example.framework.utils.DatabaseHelper;
 
-public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract{
-
-
+public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract {
 
 
     private RecyclerView mRecyclerView;
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         init();
 
 
-
     }
 
 
@@ -52,23 +49,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         presenter.setView(this);
         presenter.getList();
 
-    }
-
-    private void initRecycle(List<Task> tasks) {
-
-        mRecyclerView = findViewById(R.id.my_recycler_view);
         ImageView btnAddTask = findViewById(R.id.btn_add);
 
-
-        mRecyclerView.setHasFixedSize(true);
-
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-
-        mAdapter = new MyAdapter(tasks, this);
-        mRecyclerView.setAdapter(mAdapter);
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +65,33 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     }
 
+    @Override
+    protected void onRestart() {
+        presenter.getList();
+        super.onRestart();
 
+    }
+
+
+
+    private void initRecycle(List<Task> tasks) {
+
+        mRecyclerView = findViewById(R.id.my_recycler_view);
+
+
+
+        mRecyclerView.setHasFixedSize(true);
+
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        mAdapter = new MyAdapter(tasks, this);
+        mRecyclerView.setAdapter(mAdapter);
+
+
+    }
 
 
     @Override

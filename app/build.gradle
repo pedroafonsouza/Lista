@@ -29,8 +29,8 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0+'
     implementation 'com.android.support:recyclerview-v7:28.0.0+'
     //Libs de bind
-    implementation 'com.jakewharton:butterknife:9.0.0-rc2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
 // databate
     implementation "com.j256.ormlite:ormlite-core:5.1"

@@ -110,6 +110,17 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         >
 
+        <ImageView
+            android:id="@+id/bt_date"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_down"
+            android:clickable="false"
+
+            />
+
 
         <TextView
             android:id="@+id/date_time"
@@ -119,21 +130,12 @@
             android:text="Date"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
+
+
 
 
             />
 
-        <ImageView
-            android:id="@+id/bt_date"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_alignParentRight="true"
-
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_arrow_down"
-
-            />
 
 
     </RelativeLayout>

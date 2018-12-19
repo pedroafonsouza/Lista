@@ -17,6 +17,7 @@ public class MainPresenter {
         void listLoaded(List<Task> tasks);
         void listError(String error);
 
+
     }
 
     private TaskBusiness taskBusiness;

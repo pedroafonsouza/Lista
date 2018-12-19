@@ -2,23 +2,19 @@ package com.example.framework.lista.Model.Business;
 
 import com.example.framework.lista.Model.DAO.TaskDAO;
 import com.example.framework.lista.Model.DTO.Task;
-import com.example.framework.lista.View.Activity.MainActivity;
 import com.example.framework.utils.DatabaseHelper;
 
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-
-import static com.example.framework.utils.DatabaseHelper.databaseName;
+import java.util.concurrent.RecursiveTask;
 
 public class TaskBusiness {
 
 
     private DatabaseHelper dh;
     private TaskDAO taskDAO;
+
 
 
     public TaskBusiness() {
@@ -39,6 +35,21 @@ public class TaskBusiness {
         return tasks;
 
     }
+
+    public boolean addTask(Task task){
+
+        try {
+            taskDAO.newTask(task);
+            return true;
+        }catch (Exception e){
+
+            e.printStackTrace();
+            return false;
+        }
+
+
+    }
+
 
 
 }
