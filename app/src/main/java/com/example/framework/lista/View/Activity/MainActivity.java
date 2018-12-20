@@ -1,6 +1,7 @@
 package com.example.framework.lista.View.Activity;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +25,11 @@ import com.example.framework.lista.R;
 import com.example.framework.lista.View.Adapter.MyAdapter;
 import com.example.framework.utils.DatabaseHelper;
 
-public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract {
+import butterknife.BindView;
+import butterknife.OnClick;
+
+
+public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract, MyAdapter.TaskListener {
 
 
     private RecyclerView mRecyclerView;
@@ -32,10 +37,21 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     private RecyclerView.LayoutManager mLayoutManager;
     private MainPresenter presenter;
 
+    @BindView(R.id.btn_edit)
+    ImageView editTask;
+
+    @BindView(R.id.btn_delete)
+    ImageView deleteTask;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         init();
 
@@ -56,14 +72,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
-                intent.putExtra("name", "Add task name");
-                intent.putExtra("description", "Add a task description here...");
                 startActivity(intent);
 
             }
         });
 
     }
+
 
     @Override
     protected void onRestart() {
@@ -104,8 +119,39 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void listError(String error) {
 
-        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
+        showError(error);
 
+
+    }
+
+    private void showError(String error) {
+        Snackbar snackbar = Snackbar.make(mRecyclerView, error, 2000);
+        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+    }
+
+    @Override
+    public void taskDeleted() {
+
+        presenter.getList();
+
+    }
+
+    @Override
+    public void taskDeletedError(String error) {
+
+        showError(error);
+
+    }
+
+    @Override
+    public void taskEditClicked(Task task) {
+
+    }
+
+    @Override
+    public void taskDeleteClicked(Task task) {
+
+      presenter.removeTask(task);
 
     }
 }

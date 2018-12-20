@@ -50,6 +50,27 @@ public class TaskBusiness {
 
     }
 
+    public boolean removeTask(Task task){
+
+
+            try {
+                taskDAO.delete(task);
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+
+    }
+
+
+
+    public List getId(){
+
+        return null;
+    }
+
 
 
 }

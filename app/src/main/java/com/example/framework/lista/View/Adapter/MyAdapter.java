@@ -13,13 +13,23 @@ import com.example.framework.lista.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
+
+
+
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Task> tasks;
     private Context context;
+    private TaskListener listener;
 
     public MyAdapter(List<Task> tasks, Context context) {
         this.tasks = tasks;
         this.context = context;
+        this.listener = (TaskListener) context;
     }
 
 
@@ -38,10 +48,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Task task = tasks.get(position);
+        final Task task = tasks.get(position);
         holder.name.setText(task.getName());
         holder.description.setText(task.getDescription());
         holder.date.setText(task.getDate().toString());
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.taskDeleteClicked(task);
+
+            }
+        });
+
+
 
     }
 
@@ -53,22 +73,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView name;
-        public TextView description;
-        public TextView date;
-        public ImageView btnEdit;
-        public ImageView btnDelete;
+        @BindView(R.id.name)
+        TextView name;
+        @BindView(R.id.description)
+        TextView description;
+        @BindView(R.id.date)
+        TextView date;
+        @BindView(R.id.btn_edit)
+        ImageView btnEdit;
+        @BindView(R.id.btn_delete)
+        ImageView btnDelete;
 
         public MyViewHolder(View v) {
             super(v);
-            name = v.findViewById(R.id.name);
-            description = v.findViewById(R.id.description);
-            date = v.findViewById(R.id.date);
-            btnEdit = v.findViewById(R.id.btn_edit);
-            btnDelete = v.findViewById(R.id.btn_delete);
+            ButterKnife.bind(this, v);
+
         }
 
     }
+
+    public interface TaskListener{
+
+        void taskEditClicked(Task task);
+        void taskDeleteClicked(Task task);
+
+    }
+
 
 }
 

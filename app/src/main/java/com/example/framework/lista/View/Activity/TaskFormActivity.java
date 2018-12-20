@@ -1,6 +1,8 @@
 package com.example.framework.lista.View.Activity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.framework.lista.Model.DTO.Task;
@@ -31,9 +34,11 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static final String TAG = "TaskFormAcitvity";
     private Date date = new Date();
+
+
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+    private String dates = fmt.format(date);
     Calendar cal = Calendar.getInstance();
-
-
 
 
 
@@ -67,31 +72,56 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
 
     }
 
+
+    private void initTimeDialog() {
+
+        final int shour = cal.get(Calendar.HOUR_OF_DAY);
+        final int smin = cal.get(Calendar.MINUTE);
+
+
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour,
+                                          int min) {
+
+
+
+                        cal.add(Calendar.DATE, -1);
+                        cal.setTime(date);
+                        cal.set(Calendar.HOUR_OF_DAY, hour);
+                        cal.set(Calendar.MINUTE, min);
+                        date = cal.getTime();
+                        dates = fmt.format(date);
+                        dateTime.setText(dates);
+
+                    }
+                }, shour, smin, true);
+
+        timePickerDialog.show();
+
+
+    }
+
     @OnClick(R.id.date_form)
-    protected void getDate(){
+    protected void getDate() {
 
-
-
-            int year =  cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
-            int hour = cal.get(Calendar.HOUR_OF_DAY);
-            int min = cal.get(Calendar.MINUTE);
+        final int year = cal.get(Calendar.YEAR);
+        final int month = cal.get(Calendar.MONTH);
+        final int day = cal.get(Calendar.DAY_OF_MONTH);
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
 
 
+                Log.d(TAG, "onDateSet: dd/mm/yyyy" + day + "/" + month + "/" + year);
+
                 cal.set(year, month, day);
                 date = cal.getTime();
-
-                Log.d(TAG, "onDateSet: dd/mm/yyyy" + day + "/" + month +"/" + year);
-
-                SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
-                String dates = fmt.format(date);
-
-                dateTime.setText(dates);
+                initTimeDialog();
 
 
 
@@ -102,13 +132,10 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
 
 
         DatePickerDialog dialog = new DatePickerDialog(TaskFormActivity.this,
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,
-                    mDateSetListener,
-                    year, month,day);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.show();
-
-
+                mDateSetListener,
+                year, month, day);
+        dialog.getDatePicker().setMinDate(cal.getTime().getTime());
+        dialog.show();
 
 
 
@@ -116,16 +143,15 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
     }
 
     @OnClick(R.id.bt_confirm)
-    protected void saveTask(){
-
+    protected void saveTask() {
 
 
         String name = taskName.getText().toString();
         String descript = taskDescript.getText().toString();
 
 
-
         Task task = new Task();
+
 
         task.setName(name);
         task.setDescription(descript);
