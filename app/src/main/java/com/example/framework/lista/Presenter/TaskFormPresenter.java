@@ -8,7 +8,7 @@ public class TaskFormPresenter {
 
     public interface TaskFormContract {
 
-        void taskAdded();
+        void taskEditedAdded();
 
         void taskError(String error);
 
@@ -43,15 +43,15 @@ public class TaskFormPresenter {
 
     }
 
-    public void addTask(Task task) {
+    public void addEditTask(Task task) {
 
         if (validateField(task)) {
 
             try {
                 //sucess
 
-                if (taskBusiness.addTask(task)) {
-                    contract.taskAdded();
+                if (taskBusiness.addEditTask(task)) {
+                    contract.taskEditedAdded();
                 } else {
                     contract.taskError("Fail on save task");
                 }

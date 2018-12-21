@@ -7,7 +7,6 @@ import com.example.framework.utils.DatabaseHelper;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.RecursiveTask;
 
 public class TaskBusiness {
 
@@ -36,10 +35,10 @@ public class TaskBusiness {
 
     }
 
-    public boolean addTask(Task task){
+    public boolean addEditTask(Task task){
 
         try {
-            taskDAO.newTask(task);
+            taskDAO.newEditTask(task);
             return true;
         }catch (Exception e){
 

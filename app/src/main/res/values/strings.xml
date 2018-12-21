@@ -7,6 +7,7 @@
     <string name="txt_name_asign">Add the task name</string>
     <string name="pick_time">dd::MM:yyyy::HH::mm</string>
     <string name="txt_task_toolbar">Create a Task</string>
+    <string name="edit_task_toolbar">Edit this Task</string>
     <string name="confirm_create_task">Confirm</string>
 
     <string name="title_activity_launcher">LauncherActivity</string>

@@ -48,21 +48,11 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
 
     }
 
-    public void newTask(Task task){
+    public void newEditTask(Task task){
         try {
-            create(task);
+            createOrUpdate(task);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public int updateTask(Task task){
-        try {
-            return update(task);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-
     }
 }

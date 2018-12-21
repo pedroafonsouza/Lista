@@ -2,11 +2,8 @@ package com.example.framework.lista.View.Activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -39,7 +36,7 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
     SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
     private String dates = fmt.format(date);
     Calendar cal = Calendar.getInstance();
-
+    Task task = null;
 
 
     @BindView(R.id.task_name)
@@ -57,12 +54,32 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_form);
         ButterKnife.bind(this);
-
-
         init();
+        initForm();
+    }
 
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
+    }
+
+
+
+    private void initForm() {
+
+        if (task != null) {
+            taskName.setText(task.getName());
+            taskDescript.setText(task.getDescription());
+            String dt = fmt.format(task.getDate());
+            dateTime.setText(dt);
+
+        }else{
+            task = new Task();
+        }
 
     }
+
 
     private void init() {
 
@@ -70,6 +87,13 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         presenter.setView(this);
 
 
+        try {
+            task = (Task) getIntent().getSerializableExtra("task");
+
+        } catch (Exception e) {
+
+            Log.e("TASK NULL", e.getMessage());
+        }
     }
 
 
@@ -86,7 +110,6 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
                     @Override
                     public void onTimeSet(TimePicker view, int hour,
                                           int min) {
-
 
 
                         cal.add(Calendar.DATE, -1);
@@ -124,7 +147,6 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
                 initTimeDialog();
 
 
-
             }
 
 
@@ -138,8 +160,6 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         dialog.show();
 
 
-
-
     }
 
     @OnClick(R.id.bt_confirm)
@@ -148,24 +168,17 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
 
         String name = taskName.getText().toString();
         String descript = taskDescript.getText().toString();
-
-
-        Task task = new Task();
-
-
         task.setName(name);
         task.setDescription(descript);
-
         task.setDate(date);
 
-
-        presenter.addTask(task);
+        presenter.addEditTask(task);
     }
 
     @Override
-    public void taskAdded() {
+    public void taskEditedAdded() {
 
-        Toast.makeText(TaskFormActivity.this, "Task added with sucess", Toast.LENGTH_LONG).show();
+        finish();
 
 
     }

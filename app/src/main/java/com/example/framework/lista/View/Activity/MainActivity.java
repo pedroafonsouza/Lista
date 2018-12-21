@@ -1,18 +1,23 @@
 package com.example.framework.lista.View.Activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +31,9 @@ import com.example.framework.lista.View.Adapter.MyAdapter;
 import com.example.framework.utils.DatabaseHelper;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract, MyAdapter.TaskListener {
@@ -37,11 +44,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     private RecyclerView.LayoutManager mLayoutManager;
     private MainPresenter presenter;
 
-    @BindView(R.id.btn_edit)
-    ImageView editTask;
+    @BindView(R.id.toolbar_main)
+    Toolbar toolbar;
 
-    @BindView(R.id.btn_delete)
-    ImageView deleteTask;
+
 
 
 
@@ -51,16 +57,36 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
 
         init();
+
+    }
+
+//    public void setDefaultToolbar(){
+//
+//
+//        setSupportActionBar(toolbar);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//    }
+
+
+    private void goToAddEdit(Task task){
+
+        Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
+        intent.putExtra("task", task);
+        startActivity(intent);
 
 
     }
 
 
+
     private void init() {
 
+
+//        setDefaultToolbar();
         presenter = new MainPresenter();
         presenter.setView(this);
         presenter.getList();
@@ -71,8 +97,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
-                startActivity(intent);
+                goToAddEdit(null);
 
             }
         });
@@ -126,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     private void showError(String error) {
         Snackbar snackbar = Snackbar.make(mRecyclerView, error, 2000);
-        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        //snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     @Override
@@ -145,6 +170,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     @Override
     public void taskEditClicked(Task task) {
+
+        goToAddEdit(task);
+
 
     }
 
