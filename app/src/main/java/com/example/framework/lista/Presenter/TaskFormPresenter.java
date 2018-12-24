@@ -3,6 +3,8 @@ package com.example.framework.lista.Presenter;
 import com.example.framework.lista.Model.Business.TaskBusiness;
 import com.example.framework.lista.Model.DTO.Task;
 
+import java.util.Date;
+
 public class TaskFormPresenter {
 
 
@@ -32,7 +34,7 @@ public class TaskFormPresenter {
 
     public boolean validateField(Task task) {
 
-        if (task.getName().isEmpty() || task.getDescription().isEmpty()) {
+        if (task.getName().isEmpty() || task.getDescription().isEmpty()){
 
             return false;
         } else {

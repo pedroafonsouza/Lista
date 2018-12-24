@@ -1,14 +1,24 @@
 package com.example.framework.lista.View.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +30,7 @@ import android.support.v7.widget.Toolbar;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +45,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.framework.lista.R.color.colorPrimaryDark;
+import static com.example.framework.lista.R.color.white;
 
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract, MyAdapter.TaskListener {
@@ -46,11 +59,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
-
-
-
-
-
 
 
     @Override
@@ -72,7 +80,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //    }
 
 
-    private void goToAddEdit(Task task){
+
+
+
+    private void goToAddEdit(Task task) {
 
         Intent intent = new Intent(MainActivity.this, TaskFormActivity.class);
         intent.putExtra("task", task);
@@ -81,6 +92,40 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     }
 
+
+    private void initDialog(final Task task) {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogF);
+        builder1.setMessage("\n" +
+                "Do you really want to delete your task?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes, delete",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        presenter.removeTask(task);
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+
+
+
+        alert11.show();
+
+
+    }
 
 
     private void init() {
@@ -110,14 +155,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         presenter.getList();
         super.onRestart();
 
-    }
 
+    }
 
 
     private void initRecycle(List<Task> tasks) {
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
-
 
 
         mRecyclerView.setHasFixedSize(true);
@@ -150,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     }
 
     private void showError(String error) {
-        Snackbar snackbar = Snackbar.make(mRecyclerView, error, 2000);
+        // Snackbar snackbar = Snackbar.make(mRecyclerView, error, 2000);
         //snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
@@ -179,7 +223,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void taskDeleteClicked(Task task) {
 
-      presenter.removeTask(task);
+
+        initDialog(task);
+
 
     }
 }

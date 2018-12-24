@@ -32,7 +32,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     private void goMain() {
         Intent intent = new Intent(LauncherActivity.this,
-               MainActivity.class);
+                MainActivity.class);
         startActivity(intent);
         finish();
     }

@@ -1,8 +1,14 @@
 package com.example.framework.lista.View.Activity;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +21,7 @@ import android.widget.Toast;
 import com.example.framework.lista.Model.DTO.Task;
 import com.example.framework.lista.Presenter.TaskFormPresenter;
 import com.example.framework.lista.R;
+import com.example.framework.utils.DataUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,8 +40,7 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
     private Date date = new Date();
 
 
-    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-    private String dates = fmt.format(date);
+    private String dates = DataUtils.dateToString(date);
     Calendar cal = Calendar.getInstance();
     Task task = null;
 
@@ -64,6 +70,20 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         ButterKnife.bind(this);
     }
 
+    private void taskNotification(){
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notify=new Notification.Builder
+                (getApplicationContext()).setSound(alarmSound).setContentTitle("Task added with sucess").
+                setContentText(task.getName()).setSmallIcon(R.drawable.ic_launcher_coral).build();
+
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        notif.notify(0, notify);
+
+
+    }
 
 
     private void initForm() {
@@ -71,10 +91,10 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         if (task != null) {
             taskName.setText(task.getName());
             taskDescript.setText(task.getDescription());
-            String dt = fmt.format(task.getDate());
+            String dt = DataUtils.dateToString(task.getDate());
             dateTime.setText(dt);
 
-        }else{
+        } else {
             task = new Task();
         }
 
@@ -112,12 +132,8 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
                                           int min) {
 
 
-                        cal.add(Calendar.DATE, -1);
-                        cal.setTime(date);
-                        cal.set(Calendar.HOUR_OF_DAY, hour);
-                        cal.set(Calendar.MINUTE, min);
-                        date = cal.getTime();
-                        dates = fmt.format(date);
+                        date = DataUtils.setHourMinCurrentDate(date, hour, min);
+                        dates = DataUtils.dateToString(date, "dd/MM/yyyy - HH:mm");
                         dateTime.setText(dates);
 
                     }
@@ -140,10 +156,7 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
             public void onDateSet(DatePicker view, int year, int month, int day) {
 
 
-                Log.d(TAG, "onDateSet: dd/mm/yyyy" + day + "/" + month + "/" + year);
-
-                cal.set(year, month, day);
-                date = cal.getTime();
+                date = DataUtils.setCurrentDate(year, month, day);
                 initTimeDialog();
 
 
@@ -179,6 +192,7 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
     public void taskEditedAdded() {
 
         finish();
+        taskNotification();
 
 
     }

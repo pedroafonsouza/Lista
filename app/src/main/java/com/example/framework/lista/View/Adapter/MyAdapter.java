@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.framework.lista.Model.DTO.Task;
 import com.example.framework.lista.R;
+import com.example.framework.utils.DataUtils;
 
 import java.util.List;
 
@@ -48,10 +49,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
+
+
         final Task task = tasks.get(position);
+        String fDate = DataUtils.dateToString(task.getDate());
+
         holder.name.setText(task.getName());
         holder.description.setText(task.getDescription());
-        holder.date.setText(task.getDate().toString());
+        holder.date.setText(fDate);
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

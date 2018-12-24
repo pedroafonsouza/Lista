@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">List</string>
+    <string name="app_name">ToDo</string>
     <string name="txt_name">Task 1</string>
     <string name="txt_description">Description</string>
     <string name="txt_data">Date</string>
