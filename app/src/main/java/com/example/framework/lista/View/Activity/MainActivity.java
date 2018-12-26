@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -214,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
             @Override
             public void onClick(View v) {
 
-              btnCheck.getDrawable().s
+            
 
             }
         });

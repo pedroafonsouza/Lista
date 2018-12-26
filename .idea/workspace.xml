@@ -16,20 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02845caf-8a4a-4d1c-83bc-35601504eaf9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Services/AlarmReceiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Services/MyAlarmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_check.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/Business/TaskBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/Business/TaskBusiness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/DAO/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/DAO/TaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/DTO/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/Model/DTO/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/TaskFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/TaskFormActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Adapter/MyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Adapter/MyAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/task_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/task_item.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,13 +91,13 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="216" column="38" selection-start-line="216" selection-start-column="38" selection-end-line="216" selection-end-column="38" />
+            <state relative-caret-position="289">
+              <caret line="215" column="12" selection-start-line="215" selection-start-column="12" selection-end-line="215" selection-end-column="12" />
               <folding>
                 <element signature="e#5699#5852#0" expanded="true" />
                 <element signature="e#5851#5852#0" expanded="true" />
-                <element signature="e#5952#6103#0" expanded="true" />
-                <element signature="e#6102#6103#0" expanded="true" />
+                <element signature="e#5905#6056#0" expanded="true" />
+                <element signature="e#6055#6056#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2942,7 +2929,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/MainActivity.java</url>
-          <line>143</line>
+          <line>142</line>
           <properties class="com.example.framework.lista.View.Activity.MainActivity" method="goToAddEdit">
             <option name="EMULATED" value="true" />
           </properties>
@@ -3334,13 +3321,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/framework/lista/View/Activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="216" column="38" selection-start-line="216" selection-start-column="38" selection-end-line="216" selection-end-column="38" />
+        <state relative-caret-position="289">
+          <caret line="215" column="12" selection-start-line="215" selection-start-column="12" selection-end-line="215" selection-end-column="12" />
           <folding>
             <element signature="e#5699#5852#0" expanded="true" />
             <element signature="e#5851#5852#0" expanded="true" />
-            <element signature="e#5952#6103#0" expanded="true" />
-            <element signature="e#6102#6103#0" expanded="true" />
+            <element signature="e#5905#6056#0" expanded="true" />
+            <element signature="e#6055#6056#0" expanded="true" />
           </folding>
         </state>
       </provider>
