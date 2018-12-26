@@ -24,11 +24,17 @@ public class Task implements Serializable {
     @DatabaseField
     private Date date;
 
+    @DatabaseField
+    private boolean stat;
 
-    public Task(String name, String description, Date date) {
+
+
+
+    public Task(String name, String description, Date date, boolean stat) {
         this.name = name;
         this.description = description;
         this.date = date;
+        this.stat = stat;
     }
 
     public Task() {
@@ -42,6 +48,7 @@ public class Task implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getDescription() {
         return description;
@@ -58,4 +65,16 @@ public class Task implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
+    public boolean getStat() {
+        return stat;
+
+    }
+
+    public void setStat(boolean stat) {
+        this.stat = stat;
+   }
+
+
 }

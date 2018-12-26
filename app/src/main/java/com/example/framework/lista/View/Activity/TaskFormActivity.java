@@ -3,15 +3,16 @@ package com.example.framework.lista.View.Activity;
 import android.app.DatePickerDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +24,6 @@ import com.example.framework.lista.Presenter.TaskFormPresenter;
 import com.example.framework.lista.R;
 import com.example.framework.utils.DataUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -70,18 +70,31 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         ButterKnife.bind(this);
     }
 
-    private void taskNotification(){
+
+    private void taskNotify() {
+
+
+        Intent goMain = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, goMain, 0);
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify=new Notification.Builder
-                (getApplicationContext()).setSound(alarmSound).setContentTitle("Task added with sucess").
-                setContentText(task.getName()).setSmallIcon(R.drawable.ic_launcher_coral).build();
+        NotificationManager notif = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.notify(0, notify);
 
+            Notification notify = new NotificationCompat.Builder
+                    (getApplicationContext())
+                    .setSound(alarmSound)
+                    .setVibrate(new long[]{300, 700, 1000})
+                    .setContentTitle("Task added with sucess")
+                    .setContentIntent(pendingIntent)
+                    .setContentText(task.getName()).
+                            setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(task.getDescription()))
+                    .setSmallIcon(R.drawable.ic_launcher_coral).build();
+
+            notify.flags |= Notification.FLAG_AUTO_CANCEL;
+            notif.notify(0, notify);
 
     }
 
@@ -93,6 +106,8 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
             taskDescript.setText(task.getDescription());
             String dt = DataUtils.dateToString(task.getDate());
             dateTime.setText(dt);
+            task.setStat(false);
+
 
         } else {
             task = new Task();
@@ -184,15 +199,16 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
         task.setName(name);
         task.setDescription(descript);
         task.setDate(date);
+        task.setStat(false);
 
         presenter.addEditTask(task);
+        taskNotify();
     }
 
     @Override
     public void taskEditedAdded() {
 
         finish();
-        taskNotification();
 
 
     }

@@ -1,52 +1,35 @@
 package com.example.framework.lista.View.Activity;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
+import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import com.example.framework.lista.Model.DAO.TaskDAO;
 import com.example.framework.lista.Model.DTO.Task;
 import com.example.framework.lista.Presenter.MainPresenter;
 import com.example.framework.lista.R;
+import com.example.framework.lista.Services.AlarmReceiver;
 import com.example.framework.lista.View.Adapter.MyAdapter;
-import com.example.framework.utils.DatabaseHelper;
+
+import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-import static com.example.framework.lista.R.color.colorPrimaryDark;
-import static com.example.framework.lista.R.color.white;
 
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.MainContract, MyAdapter.TaskListener {
@@ -60,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
 
+//    @BindView(R.id.test_btn)
+//    Button testBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +53,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
         init();
+        setAlarm();
+        //pressTestButton();
 
     }
 
@@ -79,8 +68,77 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //
 //    }
 
+    public void setAlarm() {
+        AlarmManager alarmManager = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
+
+        Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 40);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.RTC, AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
+
+    }
 
 
+
+//
+//    private void pressTestButton(){
+//
+//        testBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                taskNotification();
+//
+//            }
+//        });
+//
+//    }
+
+
+    private void taskNotification(){
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.MINUTE, 31);
+        calendar.set(Calendar.SECOND, 1);
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Intent goMain = new Intent(this, LauncherActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, goMain, 0);
+
+        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notify=new Notification.Builder
+                (getApplicationContext())
+                .setSound(alarmSound)
+                .setVibrate(new long[] {300,700,1000})
+                .setContentTitle("TESTE")
+                .setContentIntent(pendingIntent)
+                .setContentText("Teste")
+
+                .setSmallIcon(R.drawable.ic_launcher_coral).build();
+
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        notif.notify(0, notify);
+
+
+
+    }
+
+    private  void checkTask(){
+
+
+
+
+
+    }
 
 
     private void goToAddEdit(Task task) {
@@ -128,6 +186,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     }
 
 
+
+
     private void init() {
 
 
@@ -143,6 +203,18 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
             public void onClick(View v) {
 
                 goToAddEdit(null);
+
+            }
+        });
+
+
+        final ImageView btnCheck= findViewById(R.id.btn_check);
+
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              btnCheck.getDrawable().s
 
             }
         });

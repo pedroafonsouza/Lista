@@ -41,11 +41,23 @@
             android:id="@+id/btn_delete"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/btn_check"
+
             android:clickable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
             android:src="@drawable/ic_delete"
+            />
+
+        <ImageView
+            android:id="@+id/btn_check"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_check"
             />
 
     </RelativeLayout>

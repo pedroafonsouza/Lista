@@ -48,6 +48,8 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
 
     }
 
+
+
     public void newEditTask(Task task){
         try {
             createOrUpdate(task);
@@ -55,4 +57,6 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
             e.printStackTrace();
         }
     }
+
+
 }
