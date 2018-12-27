@@ -28,6 +28,18 @@ public class TaskDAO extends BaseDaoImpl<Task, Integer> {
         }
     }
 
+    public List<Task> getToDo(boolean stat){
+
+        try {
+
+            return  queryBuilder().where().eq("stat", stat).query();
+        }catch (SQLException e){
+
+            return new ArrayList<>();
+        }
+
+    }
+
 
     public Task getById(Integer id){
         try {

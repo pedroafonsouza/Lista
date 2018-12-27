@@ -106,7 +106,6 @@ public class TaskFormActivity extends AppCompatActivity implements TaskFormPrese
             taskDescript.setText(task.getDescription());
             String dt = DataUtils.dateToString(task.getDate());
             dateTime.setText(dt);
-            task.setStat(false);
 
 
         } else {

@@ -1,6 +1,5 @@
 package com.example.framework.lista.View.Activity;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -21,7 +20,6 @@ import android.widget.ImageView;
 import com.example.framework.lista.Model.DTO.Task;
 import com.example.framework.lista.Presenter.MainPresenter;
 import com.example.framework.lista.R;
-import com.example.framework.lista.Services.AlarmReceiver;
 import com.example.framework.lista.View.Adapter.MyAdapter;
 
 import java.util.Calendar;
@@ -37,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView dRecyclerView;
+    private RecyclerView.Adapter dAdapter;
+    private RecyclerView.LayoutManager dLayoutManager;
     private MainPresenter presenter;
 
     @BindView(R.id.toolbar_main)
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
 
         init();
-        setAlarm();
+        // setAlarm();
         //pressTestButton();
 
     }
@@ -67,21 +68,21 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //
 //    }
 
-    public void setAlarm() {
-        AlarmManager alarmManager = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
-
-        Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
-
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 40);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        //alarmManager.setRepeating(AlarmManager.RTC, AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
-
-    }
+//    public void setAlarm() {
+//        AlarmManager alarmManager = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
+//
+//        Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+//
+//        Calendar calendar = Calendar.getInstance();
+//
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 40);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+//        //alarmManager.setRepeating(AlarmManager.RTC, AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
+//
+//    }
 
 
 
@@ -131,13 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     }
 
-    private  void checkTask(){
 
-
-
-
-
-    }
 
 
     private void goToAddEdit(Task task) {
@@ -174,12 +169,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
                     }
                 });
 
-        AlertDialog alert11 = builder1.create();
-        alert11.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+        AlertDialog alert = builder1.create();
+        alert.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
 
 
 
-        alert11.show();
+        alert.show();
 
 
     }
@@ -193,7 +188,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //        setDefaultToolbar();
         presenter = new MainPresenter();
         presenter.setView(this);
-        presenter.getList();
+        presenter.getListToDo();
+        presenter.getListExecuted();
+
 
         ImageView btnAddTask = findViewById(R.id.btn_add);
 
@@ -207,30 +204,22 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         });
 
 
-        final ImageView btnCheck= findViewById(R.id.btn_check);
 
-        btnCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            
-
-            }
-        });
 
     }
 
 
     @Override
     protected void onRestart() {
-        presenter.getList();
+        presenter.getListToDo();
+        presenter.getListExecuted();
         super.onRestart();
 
 
     }
 
 
-    private void initRecycle(List<Task> tasks) {
+    private void initRecycleToDo(List<Task> tasks) {
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
 
@@ -246,18 +235,55 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         mRecyclerView.setAdapter(mAdapter);
 
 
-    }
 
-
-    @Override
-    public void listLoaded(List<Task> tasks) {
-
-        initRecycle(tasks);
 
     }
 
+    private void initRecycleDone(List<Task> tasks) {
+
+
+
+        dRecyclerView = findViewById(R.id.done_recycler_view);
+
+
+        dRecyclerView.setHasFixedSize(true);
+
+
+        dLayoutManager = new LinearLayoutManager(this);
+        dRecyclerView.setLayoutManager(dLayoutManager);
+
+
+        dAdapter = new MyAdapter(tasks, this);
+        dRecyclerView.setAdapter(dAdapter);
+
+
+
+
+    }
+
+
+
     @Override
-    public void listError(String error) {
+    public void listLoaded(List<Task> tasks, boolean stat) {
+
+
+        if(stat) {
+            initRecycleDone(tasks);
+        }else {
+            initRecycleToDo(tasks);
+        }
+    }
+
+    @Override
+    public void taskSaved() {
+
+        presenter.getListToDo();
+        presenter.getListExecuted();
+
+    }
+
+    @Override
+    public void responseError(String error) {
 
         showError(error);
 
@@ -272,16 +298,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void taskDeleted() {
 
-        presenter.getList();
+        presenter.getListToDo();
+        presenter.getListExecuted();
+
 
     }
 
-    @Override
-    public void taskDeletedError(String error) {
 
-        showError(error);
-
-    }
 
     @Override
     public void taskEditClicked(Task task) {
@@ -297,6 +320,14 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
         initDialog(task);
 
+
+    }
+
+    @Override
+    public void  taskExecutedClicked(Task task){
+
+        task.setStat(true);
+       presenter.saveTask(task);
 
     }
 }

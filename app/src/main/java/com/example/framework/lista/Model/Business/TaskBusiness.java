@@ -27,13 +27,23 @@ public class TaskBusiness {
 
     }
 
-    public List<Task> getList() {
+    public List<Task> getListToDo() {
 
         List<Task> tasks = new ArrayList<>();
-        tasks = taskDAO.getAll();
+        tasks = taskDAO.getToDo(false);
         return tasks;
 
     }
+
+    public List<Task> getListExecuted(){
+        List<Task> tasks = new ArrayList<>();
+        tasks = taskDAO.getToDo(true);
+
+        return tasks;
+    }
+
+
+
 
     public boolean addEditTask(Task task){
 

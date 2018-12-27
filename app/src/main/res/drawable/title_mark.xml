@@ -3,13 +3,8 @@
 
     <solid
 
-        android:color="@color/coral_50"
-        >
-
-
-
+        android:color="@color/coral_50">
 
     </solid>
-
 
 </shape>

@@ -1,6 +1,8 @@
 package com.example.framework.lista.View.Adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.task_item, parent, false);
@@ -59,6 +60,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.name.setText(task.getName());
         holder.description.setText(task.getDescription());
         holder.date.setText(fDate);
+
+        if(task.getStat()){
+
+
+            holder.btnCheck.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+            holder.btnEdit.setColorFilter(ContextCompat.getColor(context, R.color.gray), PorterDuff.Mode.SRC_IN);
+            holder.btnEdit.setEnabled(false);
+
+        }else{
+
+            holder.btnCheck.setColorFilter(ContextCompat.getColor(context, R.color.gray), PorterDuff.Mode.SRC_IN);
+
+        }
+
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +91,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             }
         });
+
+        holder.btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.taskExecutedClicked(task);
+
+            }
+        });
+
+
 
 
 
@@ -99,6 +125,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ImageView btnEdit;
         @BindView(R.id.btn_delete)
         ImageView btnDelete;
+        @BindView(R.id.btn_check)
+        ImageView btnCheck;
 
         public MyViewHolder(View v) {
             super(v);
@@ -112,6 +140,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         void taskEditClicked(Task task);
         void taskDeleteClicked(Task task);
+        void taskExecutedClicked(Task task);
 
     }
 
