@@ -44,7 +44,6 @@ public class MyAlarmService extends Service {
         builder.setContentIntent(pendingIntent);
         builder.setDefaults(Notification.DEFAULT_SOUND)
                 .setDefaults(Notification.DEFAULT_ALL).setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-        ;
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }

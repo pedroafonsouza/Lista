@@ -128,6 +128,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @BindView(R.id.btn_check)
         ImageView btnCheck;
 
+
+
+
         public MyViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);

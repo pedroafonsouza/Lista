@@ -1,13 +1,9 @@
 package com.example.framework.lista.View.Activity;
 
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.framework.lista.Model.DTO.Task;
 import com.example.framework.lista.Presenter.MainPresenter;
 import com.example.framework.lista.R;
+import com.example.framework.lista.Services.AlarmReceiver;
 import com.example.framework.lista.View.Adapter.MyAdapter;
 
 import java.util.Calendar;
@@ -42,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
+    @BindView(R.id.title_my_recycler)
+    TextView titleToDo;
+    @BindView(R.id.title_done_recycler)
+    TextView titleDone;
 
 //    @BindView(R.id.test_btn)
 //    Button testBtn;
@@ -53,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        setAlarm();
+        //  init();
 
-        init();
-        // setAlarm();
         //pressTestButton();
 
     }
@@ -68,22 +70,18 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //
 //    }
 
-//    public void setAlarm() {
-//        AlarmManager alarmManager = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
-//
-//        Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
-//
-//        Calendar calendar = Calendar.getInstance();
-//
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-//        calendar.set(Calendar.HOUR_OF_DAY, 12);
-//        calendar.set(Calendar.MINUTE, 40);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-//        //alarmManager.setRepeating(AlarmManager.RTC, AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
-//
-//    }
+    public void setAlarm() {
 
+        Intent intent = new Intent(this, AlarmReceiver.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this.getApplicationContext(), 234324243, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
+                + (10000), pendingIntent);
+
+    }
 
 
 //
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
 //    }
 
 
-    private void taskNotification(){
+    private void taskNotification() {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -109,30 +107,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         calendar.set(Calendar.MINUTE, 31);
         calendar.set(Calendar.SECOND, 1);
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        Intent goMain = new Intent(this, LauncherActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, goMain, 0);
-
-        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify=new Notification.Builder
-                (getApplicationContext())
-                .setSound(alarmSound)
-                .setVibrate(new long[] {300,700,1000})
-                .setContentTitle("TESTE")
-                .setContentIntent(pendingIntent)
-                .setContentText("Teste")
-
-                .setSmallIcon(R.drawable.ic_launcher_coral).build();
-
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.notify(0, notify);
-
-
 
     }
-
-
 
 
     private void goToAddEdit(Task task) {
@@ -173,13 +149,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         alert.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
 
 
-
         alert.show();
 
 
     }
-
-
 
 
     private void init() {
@@ -204,8 +177,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         });
 
 
-
-
     }
 
 
@@ -224,52 +195,63 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         mRecyclerView = findViewById(R.id.my_recycler_view);
 
 
-        mRecyclerView.setHasFixedSize(true);
+        if (tasks.size() == 0) {
+
+            titleToDo.setVisibility(View.INVISIBLE);
+
+        } else {
+
+            titleToDo.setVisibility(View.VISIBLE);
+        }
+
+        //FALAR COM O PAULO SOBRE O PREFETCH INITIAL SIZE QUE ESTÁ COM VALOR 2 (Layout Manager)
 
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        // ((LinearLayoutManager) mLayoutManager).setInitialPrefetchItemCount(tasks.size());
 
 
         mAdapter = new MyAdapter(tasks, this);
         mRecyclerView.setAdapter(mAdapter);
 
 
-
-
     }
 
     private void initRecycleDone(List<Task> tasks) {
 
+        if (tasks.size() == 0) {
 
+            titleDone.setVisibility(View.INVISIBLE);
+
+        } else {
+
+            titleDone.setVisibility(View.VISIBLE);
+        }
 
         dRecyclerView = findViewById(R.id.done_recycler_view);
 
-
-        dRecyclerView.setHasFixedSize(true);
-
-
         dLayoutManager = new LinearLayoutManager(this);
+
         dRecyclerView.setLayoutManager(dLayoutManager);
+        dRecyclerView.setHasFixedSize(true);
 
 
         dAdapter = new MyAdapter(tasks, this);
         dRecyclerView.setAdapter(dAdapter);
 
 
-
-
     }
-
 
 
     @Override
     public void listLoaded(List<Task> tasks, boolean stat) {
 
 
-        if(stat) {
+        if (stat) {
             initRecycleDone(tasks);
-        }else {
+        } else {
             initRecycleToDo(tasks);
         }
     }
@@ -277,8 +259,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void taskSaved() {
 
-        presenter.getListToDo();
         presenter.getListExecuted();
+        presenter.getListToDo();
+
 
     }
 
@@ -298,12 +281,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     @Override
     public void taskDeleted() {
 
-        presenter.getListToDo();
         presenter.getListExecuted();
+        presenter.getListToDo();
 
 
     }
-
 
 
     @Override
@@ -324,10 +306,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
     }
 
     @Override
-    public void  taskExecutedClicked(Task task){
+    public void taskExecutedClicked(Task task) {
 
         task.setStat(true);
-       presenter.saveTask(task);
+        presenter.saveTask(task);
 
     }
 }
