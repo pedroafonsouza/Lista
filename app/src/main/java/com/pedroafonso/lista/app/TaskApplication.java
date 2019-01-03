@@ -2,12 +2,6 @@ package com.pedroafonso.lista.app;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.pedroafonso.lista.Model.DTO.Task;
-
-import java.util.List;
 
 public class TaskApplication extends Application {
 
