@@ -13,27 +13,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f1815fa-939b-4138-a2d4-c62d76a66219" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/framework/lista/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/framework/youdo/ExampleInstrumentedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Model/Business/TaskBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Model/Business/TaskBusiness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Model/DAO/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Model/DAO/TaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Model/DTO/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Model/DTO/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Presenter/MainPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Presenter/MainPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Presenter/TaskFormPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Presenter/TaskFormPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Services/AlarmReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Services/AlarmReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/Services/MyAlarmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/Services/MyAlarmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/View/Activity/LauncherActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/View/Activity/LauncherActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/View/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/View/Activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/View/Activity/TaskFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/View/Activity/TaskFormActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/View/Adapter/MyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/View/Adapter/MyAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/lista/app/TaskApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/app/TaskApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/utils/DataUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/utils/DataUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pedroafonso/utils/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rivendev/utils/DatabaseHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4f1815fa-939b-4138-a2d4-c62d76a66219" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +58,7 @@
           <provider editor-type-id="android-manifest" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/app/TaskApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -87,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -2425,19 +2405,26 @@
               <item name="Lista" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="lista" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="Lista" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="rivendev" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="rivendev" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Lista" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="rivendev" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="framework" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lista" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="framework" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="youdo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2799,6 +2786,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rivendev/youdo/app/TaskApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
