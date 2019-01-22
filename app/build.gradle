@@ -6,8 +6,8 @@ android {
         applicationId "com.pedroafonso.lista"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 201901021
-        versionName "0.0.1"
+        versionCode 201901221
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

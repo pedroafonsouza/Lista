@@ -1,4 +1,4 @@
-package com.rivendev.utils;
+package com.pedroafonso.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

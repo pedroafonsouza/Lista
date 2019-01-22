@@ -1,4 +1,4 @@
-package com.rivendev.youdo.Model.DTO;
+package com.pedroafonso.lista.Model.DTO;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

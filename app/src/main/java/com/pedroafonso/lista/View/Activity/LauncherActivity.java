@@ -1,11 +1,11 @@
-package com.rivendev.youdo.View.Activity;
+package com.pedroafonso.lista.View.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.rivendev.youdo.R;
+import com.pedroafonso.lista.R;
 
 
 public class LauncherActivity extends AppCompatActivity {

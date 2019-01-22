@@ -1,4 +1,4 @@
-package com.rivendev.youdo.Services;
+package com.pedroafonso.lista.Services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -10,9 +10,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import com.rivendev.youdo.Model.DTO.Task;
-import com.rivendev.youdo.R;
-import com.rivendev.youdo.View.Activity.MainActivity;
+import com.pedroafonso.lista.Model.DTO.Task;
+import com.pedroafonso.lista.R;
+import com.pedroafonso.lista.View.Activity.MainActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

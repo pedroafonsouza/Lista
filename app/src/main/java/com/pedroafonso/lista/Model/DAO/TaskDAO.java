@@ -1,6 +1,6 @@
-package com.rivendev.youdo.Model.DAO;
+package com.pedroafonso.lista.Model.DAO;
 
-import com.rivendev.youdo.Model.DTO.Task;
+import com.pedroafonso.lista.Model.DTO.Task;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 

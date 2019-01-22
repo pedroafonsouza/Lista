@@ -1,4 +1,4 @@
-package com.rivendev.youdo.View.Activity;
+package com.pedroafonso.lista.View.Activity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -14,11 +14,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rivendev.youdo.Model.DTO.Task;
-import com.rivendev.youdo.Presenter.MainPresenter;
-import com.rivendev.youdo.R;
-import com.rivendev.youdo.Services.AlarmReceiver;
-import com.rivendev.youdo.View.Adapter.MyAdapter;
+import com.pedroafonso.lista.Model.DTO.Task;
+import com.pedroafonso.lista.Presenter.MainPresenter;
+import com.pedroafonso.lista.R;
+import com.pedroafonso.lista.Services.AlarmReceiver;
+import com.pedroafonso.lista.View.Adapter.MyAdapter;
 
 import java.util.List;
 

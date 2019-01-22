@@ -1,8 +1,8 @@
-package com.rivendev.youdo.Model.Business;
+package com.pedroafonso.lista.Model.Business;
 
-import com.rivendev.youdo.Model.DAO.TaskDAO;
-import com.rivendev.youdo.Model.DTO.Task;
-import com.rivendev.utils.DatabaseHelper;
+import com.pedroafonso.lista.Model.DAO.TaskDAO;
+import com.pedroafonso.lista.Model.DTO.Task;
+import com.pedroafonso.utils.DatabaseHelper;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.rivendev.youdo.View.Activity;
+package com.pedroafonso.lista.View.Activity;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
@@ -14,11 +14,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.rivendev.youdo.Model.DTO.Task;
-import com.rivendev.youdo.Presenter.TaskFormPresenter;
-import com.rivendev.youdo.R;
-import com.rivendev.youdo.Services.AlarmReceiver;
-import com.rivendev.utils.DataUtils;
+import com.pedroafonso.lista.Model.DTO.Task;
+import com.pedroafonso.lista.Presenter.TaskFormPresenter;
+import com.pedroafonso.lista.R;
+import com.pedroafonso.lista.Services.AlarmReceiver;
+import com.pedroafonso.utils.DataUtils;
 
 import java.util.Calendar;
 import java.util.Date;

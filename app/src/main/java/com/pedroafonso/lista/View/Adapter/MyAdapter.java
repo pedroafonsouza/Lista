@@ -1,4 +1,4 @@
-package com.rivendev.youdo.View.Adapter;
+package com.pedroafonso.lista.View.Adapter;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rivendev.youdo.Model.DTO.Task;
-import com.rivendev.youdo.R;
-import com.rivendev.utils.DataUtils;
+import com.pedroafonso.lista.Model.DTO.Task;
+import com.pedroafonso.lista.R;
+import com.pedroafonso.utils.DataUtils;
 
 import java.util.List;
 
